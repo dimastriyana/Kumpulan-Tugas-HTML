@@ -1,0 +1,311 @@
+Microsoft Windows [Version 10.0.17134.345]
+(c) 2018 Microsoft Corporation. All rights reserved.
+
+C:\Users\Rian>cd..
+
+C:\Users>cd..
+
+C:\>cd xampp/mysql/bin
+
+C:\xampp\mysql\bin>mysql u-root
+ERROR 1044 (42000): Access denied for user ''@'localhost' to database 'u-root'
+
+C:\xampp\mysql\bin>mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 3
+Server version: 10.1.30-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2017, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> create database entitas;
+Query OK, 1 row affected (0.02 sec)
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| absensi_siswa      |
+| entitas            |
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+7 rows in set (0.15 sec)
+
+MariaDB [(none)]> use entitas;
+Database changed
+MariaDB [entitas]> create table pegawai
+    -> (
+    -> nip char(20),
+    -> nuptk(20)primary key,
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '(20)primary key,' at line 4
+MariaDB [entitas]> create table pegawai
+    -> (
+    -> nip char(20),
+    -> nuptk char(20) primary key,
+    -> nama varchar(30),
+    -> alamat varchar(40),
+    -> agama varchar(25),
+    -> jenis kelamin(20),
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'kelamin(20),
+)' at line 8
+MariaDB [entitas]> create table pegawai
+    -> (
+    -> nip char(20),
+    -> nuptk(20)primary key,
+    -> nama varchar(30),
+    -> alamat varchar(40),
+    -> agama varchar(25),
+    -> jenis kelamin(20)
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '(20)primary key,
+nama varchar(30),
+alamat varchar(40),
+agama varchar(25),
+jenis ' at line 4
+MariaDB [entitas]> create table pegawai
+    -> (
+    -> nip char(20),
+    -> nuptk char(20) primary key,
+    -> nama varchar(30),
+    -> alamat varchar(40),
+    -> agama varchar(25),
+    -> jenis kelamin varchar(20)
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'kelamin varchar(20)
+)' at line 8
+MariaDB [entitas]> create table pegawai
+    -> (
+    -> nip char(20),
+    -> nuptk char(20) primary key,
+    -> nama varchar(30),
+    -> alamat varchar(40),
+    -> agama varchar(25),
+    -> jeniskelamin varchar(20)
+    -> );
+Query OK, 0 rows affected (0.42 sec)
+
+MariaDB [entitas]> create table siswa
+    -> (
+    -> nis char(20) primary key,
+    -> nama varchar(30),
+    -> alamat varchar(40),
+    -> agama varchar(25),
+    -> jeniskelamin varchar(20)
+    -> );
+Query OK, 0 rows affected (0.28 sec)
+
+MariaDB [entitas]> create table matapelajaran
+    -> (
+    -> kodemapel char(20) primary key,
+    -> namamapel varchar(30),
+    -> semester varchar(20),
+    -> nis char(20)
+    -> );
+Query OK, 0 rows affected (0.24 sec)
+
+MariaDB [entitas]> create table departement
+    -> (
+    -> no_sekolah char(20) primary key,
+    -> nama varchar(30),
+    -> lokasi varchar(40),
+    -> nuptk char(20)
+    -> );
+Query OK, 0 rows affected (0.37 sec)
+
+MariaDB [entitas]> show tables;
++-------------------+
+| Tables_in_entitas |
++-------------------+
+| departement       |
+| matapelajaran     |
+| pegawai           |
+| siswa             |
++-------------------+
+4 rows in set (0.00 sec)
+
+MariaDB [entitas]> insert into pegawai values
+    -> (
+    -> "0002342"
+    -> "9876534"
+    -> "Joko"
+    -> "Jl.UjungAspal"
+    -> "islam"
+    -> "Laki-laki"
+    -> );
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+MariaDB [entitas]> insert into pegawai values
+    -> (
+    -> "0000934623",
+    -> "9833239489",
+    -> "Dimas",
+    -> "jl.ujungkulon",
+    -> "islam",
+    -> "Laki-laki",
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')' at line 9
+MariaDB [entitas]> insert into pegawai values
+    -> (
+    -> "0000934623",
+    -> "9876534"
+    -> "Dimas",
+    -> "Jl.UjungAspal",
+    -> "islam",
+    -> "Laki-laki"
+    -> );
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+MariaDB [entitas]> insert into pegawai value
+    -> (
+    -> "0000923723",
+    -> "9273848378",
+    -> "Dimas",
+    -> "jl.ujungkulon",
+    -> "islam",
+    -> "pria"
+    -> );
+Query OK, 1 row affected (0.09 sec)
+
+MariaDB [entitas]> insert into pegawai value
+    -> (
+    -> "000923728",
+    -> "288236483",
+    -> "Ujang",
+    -> "jl.baru",
+    -> "Kristen",
+    -> "pria"
+    -> );
+Query OK, 1 row affected (0.02 sec)
+
+MariaDB [entitas]> insert into pegawai value
+    -> (
+    -> "0000927382",
+    -> "92838734",
+    -> "Mawanuh",
+    -> "jl.utek",
+    -> "Budha",
+    -> "wanita"
+    -> );
+Query OK, 1 row affected (0.07 sec)
+
+MariaDB [entitas]> select*form tablepegawai;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'form tablepegawai' at line 1
+MariaDB [entitas]> select*from pegawai;
++------------+------------+---------+---------------+---------+--------------+
+| nip        | nuptk      | nama    | alamat        | agama   | jeniskelamin |
++------------+------------+---------+---------------+---------+--------------+
+| 000923728  | 288236483  | Ujang   | jl.baru       | Kristen | pria         |
+| 0000923723 | 9273848378 | Dimas   | jl.ujungkulon | islam   | pria         |
+| 0000927382 | 92838734   | Mawanuh | jl.utek       | Budha   | wanita       |
++------------+------------+---------+---------------+---------+--------------+
+3 rows in set (0.00 sec)
+
+MariaDB [entitas]> insert into siswa value ("008236223","Dimas Triyana","jl.ujungkulon","Islam","pria");
+Query OK, 1 row affected (0.03 sec)
+
+MariaDB [entitas]> insert into siswa value ("008348937","Udin Sedunia","jl.aspalcut","Kristen","pria");
+Query OK, 1 row affected (0.07 sec)
+
+MariaDB [entitas]> insert into siswa value ("0008456576","Sukijah","jl.mamank","Budha","wanita");
+Query OK, 1 row affected (0.06 sec)
+
+MariaDB [entitas]> select*from siswa;
++------------+---------------+---------------+---------+--------------+
+| nis        | nama          | alamat        | agama   | jeniskelamin |
++------------+---------------+---------------+---------+--------------+
+| 0008456576 | Sukijah       | jl.mamank     | Budha   | wanita       |
+| 008236223  | Dimas Triyana | jl.ujungkulon | Islam   | pria         |
+| 008348937  | Udin Sedunia  | jl.aspalcut   | Kristen | pria         |
++------------+---------------+---------------+---------+--------------+
+3 rows in set (0.00 sec)
+
+MariaDB [entitas]> insert into matapelajaran value ("69875","DataBase","Semester 2","000832836");
+Query OK, 1 row affected (0.09 sec)
+
+MariaDB [entitas]> insert into matapelajaran value ("28362","Design Grafis","Semester 2","000834787");
+Query OK, 1 row affected (0.06 sec)
+
+MariaDB [entitas]> insert into matapelajaran value ("928366","OOP","Semester 2","000238738");
+Query OK, 1 row affected (0.10 sec)
+
+MariaDB [entitas]> select*from matapelajaran;
++-----------+---------------+------------+-----------+
+| kodemapel | namamapel     | semester   | nis       |
++-----------+---------------+------------+-----------+
+| 28362     | Design Grafis | Semester 2 | 000834787 |
+| 69875     | DataBase      | Semester 2 | 000832836 |
+| 928366    | OOP           | Semester 2 | 000238738 |
++-----------+---------------+------------+-----------+
+3 rows in set (0.00 sec)
+
+MariaDB [entitas]> insert into departement value ("24","SMKN 24","Jl.Bambu Kuning","837493864");
+Query OK, 1 row affected (0.06 sec)
+
+MariaDB [entitas]> insert into departement value ("51","SMKN 51","Jl.Bambu Wulung","387463484");
+Query OK, 1 row affected (0.07 sec)
+
+MariaDB [entitas]> insert into departement value ("58","SMKN 58","Jl.Bambu Wulung","635473647");
+Query OK, 1 row affected (0.05 sec)
+
+MariaDB [entitas]> select*from departement;
++------------+---------+-----------------+-----------+
+| no_sekolah | nama    | lokasi          | nuptk     |
++------------+---------+-----------------+-----------+
+| 24         | SMKN 24 | Jl.Bambu Kuning | 837493864 |
+| 51         | SMKN 51 | Jl.Bambu Wulung | 387463484 |
+| 58         | SMKN 58 | Jl.Bambu Wulung | 635473647 |
++------------+---------+-----------------+-----------+
+3 rows in set (0.00 sec)
+
+MariaDB [entitas]> select pegawai.nuptk from pegawai iner join departement on departement.nuptk = departement.nuptk;
+ERROR 1054 (42S22): Unknown column 'pegawai.nuptk' in 'field list'
+MariaDB [entitas]> select pegawai.nuptk from pegawai inner join departement.nuptk = departement.nuptk;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.nuptk' at line 1
+MariaDB [entitas]> select pegawai.nuptk from pegawai inner join departement on departement.nuptk = departement.nuptk;
++------------+
+| nuptk      |
++------------+
+| 288236483  |
+| 9273848378 |
+| 92838734   |
+| 288236483  |
+| 9273848378 |
+| 92838734   |
+| 288236483  |
+| 9273848378 |
+| 92838734   |
++------------+
+9 rows in set (0.06 sec)
+
+MariaDB [entitas]> select siswa.nis from siswa inner join matapelajaran on matapelajaran.nis = matapelajaran.nis;
++------------+
+| nis        |
++------------+
+| 0008456576 |
+| 008236223  |
+| 008348937  |
+| 0008456576 |
+| 008236223  |
+| 008348937  |
+| 0008456576 |
+| 008236223  |
+| 008348937  |
++------------+
+9 rows in set (0.00 sec)
+
+MariaDB [entitas]>  select*from pegawai;
++------------+------------+---------+---------------+---------+--------------+
+| nip        | nuptk      | nama    | alamat        | agama   | jeniskelamin |
++------------+------------+---------+---------------+---------+--------------+
+| 000923728  | 288236483  | Ujang   | jl.baru       | Kristen | pria         |
+| 0000923723 | 9273848378 | Dimas   | jl.ujungkulon | islam   | pria         |
+| 0000927382 | 92838734   | Mawanuh | jl.utek       | Budha   | wanita       |
++------------+------------+---------+---------------+---------+--------------+
+3 rows in set (0.00 sec)
+
+MariaDB [entitas]>
